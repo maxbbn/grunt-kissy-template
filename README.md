@@ -55,14 +55,17 @@ A string value that is used to do something else with whatever else.
 In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
 
 ```js
-grunt.initConfig({
-  ktpl: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+ktpl: {
+        page: {
+            files: [{
+                expand: true,
+                cwd: '<%= pageBase %>',
+                dest: '<%= pageBase %>',
+                src: '**/*-tpl.html',
+                ext: '.js'
+            }]
+        }
     },
-  },
-})
 ```
 
 #### Custom Options
@@ -72,11 +75,19 @@ In this example, custom options are used to do something else with whatever else
 grunt.initConfig({
   ktpl: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      minifyOptions: {
+        removeComments: true,
+        removeCommentsFromCDATA: true,
+        removeCDATASectionsFromCDATA: true,
+        collapseWhitespace: true,
+        collapseBooleanAttributes: true,
+        removeAttributeQuotes: true,
+        removeEmptyAttributes: true
+      }
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    page: {
+      src: 'foo-tpl.html',
+      dest: 'foo-tpl.js'
     },
   },
 })
