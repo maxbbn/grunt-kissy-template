@@ -20,11 +20,13 @@ module.exports = function (grunt) {
       " */\n" +
       "KISSY.add(function(){\n" +
       "    return <%= tpl %>;\n" +
-      "});"
+      "});";
+
   grunt.registerMultiTask('ktpl', 'Your task description goes here.', function () {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      minify: {
+      minify: false,
+      minifyOption: {
         removeComments: true,
         removeCommentsFromCDATA: true,
         removeCDATASectionsFromCDATA: true,
@@ -36,14 +38,15 @@ module.exports = function (grunt) {
     });
 
     function kissy_template(src, dest) {
-      var result = minify(src, options.minify);
+
+
 
       var moduleJS = grunt.template.process(
         kissyModuleTemplate,
         {
           data: {
             tpl: JSON.stringify({
-              html: result
+              html: src
             })
           }
         }
@@ -71,7 +74,19 @@ module.exports = function (grunt) {
           }
         }).map(function (filepath) {
             // Read file source.
-            return grunt.file.read(filepath);
+            var content =  grunt.file.read(filepath);
+
+
+            if (options.minify) {
+              try {
+                content = minify(content, options.minifyOption);
+              } catch (e) {
+                grunt.warn("Minify Error: " + filepath);
+              }
+            }
+
+            return content;
+
           }).join(' ');
 
         kissy_template(src, file.dest);
@@ -87,10 +102,21 @@ module.exports = function (grunt) {
             return true;
           }
         }).forEach(function(filepath){
-            var src = grunt.file.read(filepath);
+            var content = grunt.file.read(filepath);
+            if (options.minify) {
+              try {
+                content = minify(content, options.minifyOption);
+              } catch (e) {
+                grunt.warn("Minify Error: " + filepath);
+              }
+            }
+
+
             // extname to js
             var dest = filepath.replace(/\.([^.]*)$/, '.js');
-            kissy_template(src, dest);
+
+            kissy_template(content, dest);
+
           });
       }
     });

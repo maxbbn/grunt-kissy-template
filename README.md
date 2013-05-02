@@ -36,14 +36,14 @@ grunt.initConfig({
 ```
 
 ### Options
-
-- minify.removeComments: true
-- minify.removeCommentsFromCDATA: true
-- minify.removeCDATASectionsFromCDATA: true
-- minify.collapseWhitespace: true
-- minify.collapseBooleanAttributes: true
-- minify.removeAttributeQuotes: true
-- minify.removeEmptyAttributes: true
+- minify false 开启 HTML 压缩，请保证模板内容为合法HTML
+- minifyOption.removeComments: true
+- minifyOption.removeCommentsFromCDATA: true
+- minifyOption.removeCDATASectionsFromCDATA: true
+- minifyOption.collapseWhitespace: true
+- minifyOption.collapseBooleanAttributes: true
+- minifyOption.removeAttributeQuotes: true
+- minifyOption.removeEmptyAttributes: true
 
 ### Usage Examples
 
@@ -104,4 +104,4 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+v0.1.2 add minify option and html minify was off by default

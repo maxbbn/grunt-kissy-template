@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/qipbbn/kissy-template.git"
+    "url": "git@github.com:maxbbn/grunt-kissy-template.git"
   },
   "bugs": {
     "url": "https://github.com/qipbbn/kissy-template/issues"

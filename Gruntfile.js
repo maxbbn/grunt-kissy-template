@@ -20,7 +20,7 @@ module.exports = function(grunt) {
       ],
       options: {
         jshintrc: '.jshintrc',
-      },
+      }
     },
 
     // Before generating any new files, remove any previously-created files.
@@ -31,8 +31,16 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     ktpl: {
       no_dest: {
-        src: 'test/html/*-tpl.html'
+        src: 'test/html/modA-tpl.html'
       },
+
+      minify_on : {
+        options: {
+          minify: true
+        },
+        src: 'test/html/modB-tpl.html'
+      },
+
       custom_options: {
         files: {
           'tmp/modAll.js': 'test/html/*-tpl.html'
