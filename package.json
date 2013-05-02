@@ -1,7 +1,7 @@
 {
   "name": "grunt-kissy-template",
   "description": "html to kissy module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/qipbbn/kissy-template",
   "author": {
     "name": "maxbbn",
