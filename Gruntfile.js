@@ -25,33 +25,25 @@ module.exports = function(grunt) {
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp'],
+      tests: ['tmp', 'test/html/*.js']
     },
 
     // Configuration to be run (and then tested).
     ktpl: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
+      no_dest: {
+        src: 'test/html/*-tpl.html'
       },
       custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
         files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
+          'tmp/modAll.js': 'test/html/*-tpl.html'
+        }
+      }
     },
 
     // Unit tests.
     nodeunit: {
-      tests: ['test/*_test.js'],
-    },
+      tests: ['test/*_test.js']
+    }
 
   });
 
