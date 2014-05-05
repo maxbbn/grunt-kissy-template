@@ -38,8 +38,7 @@ module.exports = function (grunt) {
     });
 
     function kissy_template(src, dest) {
-
-
+      src = src.replace(/\r\n/g, '\n');
 
       var moduleJS = grunt.template.process(
         kissyModuleTemplate,
